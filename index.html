@@ -1,0 +1,64 @@
+
+<html>
+    <head>
+        <title>Johannes' website</title>
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+
+        <style>
+            body {
+                background: #415A64;
+                color: #fff;
+                font-family: 'Fredoka One', cursive;
+                font-size: 20px;
+                padding: 30px;
+                margin: 30px;
+            }
+
+            #introduction {
+                font-size: 55px;
+                line-height: 90px;
+            }
+
+            a {
+                text-decoration: none;
+                background: rgba(0, 0, 0, 0.05);
+                border-radius: 3px;
+                padding: 0 15px;
+                color: #fff;
+                transition: all 0.2s;
+                display: inline-block;
+            }
+
+            a:hover {
+                background: #202020;
+                color: #f9f9f9;
+                transform: scale(1.04);
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <p id="introduction">
+            Hi, I'm Johannes! Here's my <a href="https://github.com/jgorset">code</a>, 
+            <a href="https://www.linkedin.com/in/johannesgorset">resume</a>, and 
+            <a href="http://bit.ly/handbook-to-johannes">handbook</a>
+        </h1>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var colors = ['#64867E','#E3D28A','#E57130','#CF4111'];
+
+        $('a').mouseenter(function() {
+            var rand = colors[Math.floor(Math.random() * colors.length)];
+            $(this).css('background-color', rand);
+        });
+
+        $('a').mouseleave(function() {
+            $(this).css('background-color', '');
+        });
+    </script>
+</html>
