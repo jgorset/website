@@ -13,6 +13,7 @@
                 font-family: 'Fredoka One', cursive;
                 font-size: 20px;
                 margin: 10vmin;
+                transition: all 0.2s;
             }
 
             #introduction {
@@ -32,7 +33,7 @@
             }
 
             a:hover {
-                background: #CF4111;
+                background: rgb(207, 17, 160);
                 color: #f9f9f9;
                 transform: scale(1.2);
             }
@@ -50,15 +51,52 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        var colors = ['#64867E','#E3D28A','#E57130','#CF4111'];
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function LightenDarkenColor(col,amt) {
+            var usePound = false;
+            if ( col[0] == "#" ) {
+                col = col.slice(1);
+                usePound = true;
+            }
+
+            var num = parseInt(col,16);
+
+            var r = (num >> 16) + amt;
+
+            if ( r > 255 ) r = 255;
+            else if  (r < 0) r = 0;
+
+            var b = ((num >> 8) & 0x00FF) + amt;
+
+            if ( b > 255 ) b = 255;
+            else if  (b < 0) b = 0;
+
+            var g = (num & 0x0000FF) + amt;
+
+            if ( g > 255 ) g = 255;
+            else if  ( g < 0 ) g = 0;
+
+            return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+        }
 
         $('a').mouseenter(function() {
-            var rand = colors[Math.floor(Math.random() * colors.length)];
+            var rand = getRandomColor();
             $(this).css('background-color', rand);
+            $('body').css('background-color', LightenDarkenColor(rand, 20));
+            console.log(rand, LightenDarkenColor(rand, 20));
         });
 
         $('a').mouseleave(function() {
             $(this).css('background-color', '');
+            $('body').css('background-color', '');
         });
     </script>
 </html>
